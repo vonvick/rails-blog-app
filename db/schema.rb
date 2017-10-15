@@ -43,13 +43,17 @@ ActiveRecord::Schema.define(version: 20170925115009) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "permissions_roles", id: false, force: :cascade do |t|
+    t.bigint "permission_id", null: false
+    t.bigint "role_id", null: false
+    t.index ["permission_id", "role_id"], name: "index_permissions_roles_on_permission_id_and_role_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.bigint "permission_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["permission_id"], name: "index_roles_on_permission_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -68,6 +72,5 @@ ActiveRecord::Schema.define(version: 20170925115009) do
   add_foreign_key "blogs", "users"
   add_foreign_key "comments", "blogs"
   add_foreign_key "comments", "users"
-  add_foreign_key "roles", "permissions"
   add_foreign_key "users", "roles"
 end
