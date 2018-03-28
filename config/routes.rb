@@ -4,6 +4,11 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :roles do
       end
+      resources :users, only: [:create, :index, :show, :update, :destroy] do
+        collection do
+          post 'login'
+        end
+      end
     end
   end
 end

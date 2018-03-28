@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20170925115009) do
     t.bigint "user_id"
     t.bigint "blog_id"
     t.boolean "flagged"
+    t.boolean "is_active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["blog_id"], name: "index_comments_on_blog_id"
@@ -61,8 +62,9 @@ ActiveRecord::Schema.define(version: 20170925115009) do
     t.string "lastname"
     t.string "username"
     t.string "email"
-    t.string "password"
+    t.string "password_digest"
     t.string "imageUrl"
+    t.boolean "is_active", default: true
     t.bigint "role_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
